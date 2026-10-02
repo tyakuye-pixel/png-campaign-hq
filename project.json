@@ -1,0 +1,20 @@
+{
+  "overview": "A political campaign dashboard covering all electorates of Papua New Guinea, with a national overview, searchable electorate directory, per-electorate profiles, and campaign activity tracking.",
+  "features": [
+    "National overview with totals and charts by province and support level",
+    "Searchable, filterable directory of all PNG electorates",
+    "Per-electorate profile with campaign status and activity log",
+    "Record campaign events, contacts, and notes",
+    "Set and update support levels for each electorate",
+    "Admin-protected editing with public read-only browsing"
+  ],
+  "category": "dashboard",
+  "tags": [
+    "political",
+    "campaign",
+    "dashboard",
+    "papua-new-guinea",
+    "data"
+  ],
+  "last_updated": "2026-10-02T04:06:37.811Z"
+}

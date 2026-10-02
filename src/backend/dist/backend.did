@@ -1,0 +1,148 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UpdateCampaignDetails = 
+ record {
+   campaignManager: text;
+   notes: text;
+   supportLevel: SupportLevel;
+ };
+type Timestamp = int;
+type SupportLevelCount = 
+ record {
+   count: nat;
+   supportLevel: SupportLevel;
+ };
+type SupportLevel = 
+ variant {
+   Leaning;
+   Opposed;
+   Strong;
+   Undecided;
+   Weak;
+ };
+type SeatType = 
+ variant {
+   open;
+   regional;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ProvinceCount = 
+ record {
+   count: nat;
+   province: text;
+ };
+type NewActivity = 
+ record {
+   activityType: ActivityType;
+   date: Timestamp;
+   description: text;
+ };
+type NationalSummary = 
+ record {
+   countsByProvince: vec ProvinceCount;
+   countsBySupportLevel: vec SupportLevelCount;
+   totalActivities: nat;
+   totalElectorates: nat;
+   totalProvinces: nat;
+   totalRegisteredVoters: nat;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type ElectorateId = nat;
+type Electorate = 
+ record {
+   campaignManager: text;
+   id: ElectorateId;
+   name: text;
+   notes: text;
+   province: text;
+   region: text;
+   registeredVoters: nat;
+   seatType: SeatType;
+   supportLevel: SupportLevel;
+   updatedAt: Timestamp;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type CampaignActivity = 
+ record {
+   activityType: ActivityType;
+   createdAt: Timestamp;
+   date: Timestamp;
+   description: text;
+   electorateId: ElectorateId;
+   id: ActivityId;
+ };
+type ActivityType = 
+ variant {
+   contact;
+   event;
+   note;
+ };
+type ActivityId = nat;
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addActivity: (electorateId: ElectorateId, input: NewActivity) ->
+   (opt CampaignActivity);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getElectorate: (id: ElectorateId) -> (opt Electorate) query;
+  getNationalSummary: () -> (NationalSummary) query;
+  isCallerAdmin: () -> (bool) query;
+  listActivities: (electorateId: ElectorateId) ->
+   (vec CampaignActivity) query;
+  listElectorates: () -> (vec Electorate) query;
+  listRecentActivities: (limit: nat) -> (vec CampaignActivity) query;
+  schema: () -> (text) query;
+  updateCampaignDetails: (id: ElectorateId, details:
+   UpdateCampaignDetails) -> (opt Electorate);
+}

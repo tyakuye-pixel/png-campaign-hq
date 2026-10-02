@@ -1,0 +1,110 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type ActivityId__326478791 = Nat;
+type ActivityType__742269618 = {#contact; #event; #note};
+type ActivityType__823645489 = {#contact; #event; #note};
+type CampaignActivity__407662569 =
+  {
+    activityType : ActivityType__742269618;
+    createdAt : Int;
+    date : Int;
+    description : Text;
+    electorateId : Nat;
+    id : Nat
+  };
+type CampaignActivity__442461017 =
+  {
+    activityType : ActivityType__823645489;
+    createdAt : Timestamp__301639476;
+    date : Timestamp__301639476;
+    description : Text;
+    electorateId : ElectorateId__237026971;
+    id : ActivityId__326478791
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type ElectorateId__237026971 = Nat;
+type Electorate__116738577 =
+  {
+    campaignManager : Text;
+    id : ElectorateId__237026971;
+    name : Text;
+    notes : Text;
+    province : Text;
+    region : Text;
+    registeredVoters : Nat;
+    seatType : SeatType__298896869;
+    supportLevel : SupportLevel__916245824;
+    updatedAt : Timestamp__301639476
+  };
+type Electorate__940306730 =
+  {
+    campaignManager : Text;
+    id : Nat;
+    name : Text;
+    notes : Text;
+    province : Text;
+    region : Text;
+    registeredVoters : Nat;
+    seatType : SeatType__89175073;
+    supportLevel : SupportLevel__545478715;
+    updatedAt : Int
+  };
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type List__355132335<T> =
+  {
+    var blockIndex : Nat__227979830;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__227979830
+  };
+type List__836382695<T> = List__355132335<T>;
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__769816496 =
+  {
+    accessControlState : AccessControlState__201339279;
+    state : State__718531379
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__512397517 = {};
+type SeatType__298896869 = {#open; #regional};
+type SeatType__89175073 = {#open; #regional};
+type State__718531379 =
+  {
+    activities : List__836382695<CampaignActivity__407662569>;
+    electorates : Map__230067015<Nat, Electorate__940306730>;
+    var nextActivityId : Nat
+  };
+type SupportLevel__545478715 =
+  {#Leaning; #Opposed; #Strong; #Undecided; #Weak};
+type SupportLevel__916245824 =
+  {#Leaning; #Opposed; #Strong; #Undecided; #Weak};
+type Timestamp__301639476 = Int;
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "00000000_000000" : OldActor__512397517 -> NewActor__769816496
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable state :
+    {
+      activities : List__836382695<CampaignActivity__442461017>;
+      electorates :
+        Map__230067015<ElectorateId__237026971, Electorate__116738577>;
+      var nextActivityId : Nat
+    }
+};

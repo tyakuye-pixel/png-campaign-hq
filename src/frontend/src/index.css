@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "Figtree";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.5rem;
+
+    /* The Red House Ledger — cool slate paper, deep national crimson */
+    --background: 0.975 0.004 250;
+    --foreground: 0.19 0.02 255;
+    --card: 1.0 0.001 250;
+    --card-foreground: 0.19 0.02 255;
+    --popover: 1.0 0.001 250;
+    --popover-foreground: 0.19 0.02 255;
+
+    --primary: 0.42 0.17 18;
+    --primary-foreground: 0.985 0.004 20;
+
+    --secondary: 0.955 0.006 250;
+    --secondary-foreground: 0.28 0.02 255;
+    --muted: 0.955 0.006 250;
+    --muted-foreground: 0.5 0.018 255;
+
+    --accent: 0.72 0.14 78;
+    --accent-foreground: 0.22 0.04 70;
+
+    --destructive: 0.5 0.2 25;
+    --destructive-foreground: 0.985 0.004 25;
+
+    --success: 0.5 0.13 158;
+    --success-foreground: 0.985 0.004 158;
+    --warning: 0.72 0.15 78;
+    --warning-foreground: 0.22 0.04 70;
+
+    --border: 0.9 0.008 250;
+    --input: 0.9 0.008 250;
+    --ring: 0.42 0.17 18;
+
+    /* Support-level categorical scale (Strong → Opposed) */
+    --support-strong: 0.5 0.13 158;
+    --support-leaning: 0.55 0.11 195;
+    --support-undecided: 0.72 0.15 78;
+    --support-weak: 0.62 0.17 48;
+    --support-opposed: 0.48 0.19 20;
+
+    /* Chart categorical palette — provinces & breakdowns */
+    --chart-1: 0.44 0.16 18;
+    --chart-2: 0.5 0.13 158;
+    --chart-3: 0.55 0.11 195;
+    --chart-4: 0.72 0.15 78;
+    --chart-5: 0.62 0.17 48;
+
+    --sidebar: 0.21 0.03 258;
+    --sidebar-foreground: 0.93 0.01 250;
+    --sidebar-primary: 0.62 0.18 20;
+    --sidebar-primary-foreground: 0.985 0.004 20;
+    --sidebar-accent: 0.28 0.035 258;
+    --sidebar-accent-foreground: 0.97 0.008 250;
+    --sidebar-border: 0.3 0.03 258;
+    --sidebar-ring: 0.62 0.18 20;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.44 0.17 18),
+      oklch(0.36 0.15 12)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(1.0 0.001 250),
+      oklch(0.965 0.005 250)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.155 0.014 258;
+    --foreground: 0.94 0.008 250;
+    --card: 0.195 0.016 258;
+    --card-foreground: 0.94 0.008 250;
+    --popover: 0.22 0.018 258;
+    --popover-foreground: 0.94 0.008 250;
+
+    --primary: 0.66 0.18 20;
+    --primary-foreground: 0.16 0.02 20;
+
+    --secondary: 0.235 0.018 258;
+    --secondary-foreground: 0.88 0.008 250;
+    --muted: 0.235 0.018 258;
+    --muted-foreground: 0.62 0.014 255;
+
+    --accent: 0.78 0.14 80;
+    --accent-foreground: 0.18 0.03 75;
+
+    --destructive: 0.62 0.19 25;
+    --destructive-foreground: 0.16 0.02 25;
+
+    --success: 0.68 0.14 158;
+    --success-foreground: 0.16 0.02 158;
+    --warning: 0.78 0.14 80;
+    --warning-foreground: 0.18 0.03 75;
+
+    --border: 0.3 0.02 258;
+    --input: 0.3 0.02 258;
+    --ring: 0.66 0.18 20;
+
+    /* Support-level categorical scale (Strong → Opposed) */
+    --support-strong: 0.68 0.14 158;
+    --support-leaning: 0.7 0.11 195;
+    --support-undecided: 0.78 0.14 80;
+    --support-weak: 0.7 0.16 48;
+    --support-opposed: 0.64 0.19 20;
+
+    /* Chart categorical palette — provinces & breakdowns */
+    --chart-1: 0.64 0.18 20;
+    --chart-2: 0.68 0.14 158;
+    --chart-3: 0.7 0.11 195;
+    --chart-4: 0.78 0.14 80;
+    --chart-5: 0.7 0.16 48;
+
+    --sidebar: 0.185 0.016 258;
+    --sidebar-foreground: 0.93 0.008 250;
+    --sidebar-primary: 0.66 0.18 20;
+    --sidebar-primary-foreground: 0.16 0.02 20;
+    --sidebar-accent: 0.25 0.02 258;
+    --sidebar-accent-foreground: 0.9 0.008 250;
+    --sidebar-border: 0.3 0.02 258;
+    --sidebar-ring: 0.66 0.18 20;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.6 0.18 20),
+      oklch(0.5 0.16 14)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.205 0.016 258),
+      oklch(0.18 0.014 258)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  .label-caps {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground;
+  }
+  .rule-accent {
+    @apply border-t-2 border-primary;
+  }
+}
